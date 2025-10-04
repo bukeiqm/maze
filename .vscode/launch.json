@@ -1,0 +1,65 @@
+{
+    // 使用 IntelliSense 了解相关属性。
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "(gdb) 启动",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/maze",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "为 gdb 启用整齐打印",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "将反汇编风格设置为 Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Launch Maze (gdb)",
+            "type": "cppdbg",
+            "request": "launch",
+            // 可执行文件路径：默认假定 CMake 在工作区根（CMAKE_BINARY_DIR）生成可执行文件为 ${workspaceFolder}/maze
+            // 如果你的可执行在其它位置（例如 build/maze），请把这里改为相应路径。
+            "program": "${workspaceFolder}/maze",
+            "args": [],
+            "stopAtEntry": false,
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            // 如果 gdb 不在此路径，请改为系统中 gdb 的实际路径，例如 /usr/bin/gdb
+            "miDebuggerPath": "/usr/bin/gdb",
+            "preLaunchTask": "CMake Build",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "logging": { "engineLogging": false, "trace": false, "traceResponse": false }
+        },
+        {
+            "name": "Attach to Maze (gdb)",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "${workspaceFolder}/maze",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}
